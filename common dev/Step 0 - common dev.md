@@ -25,4 +25,6 @@ This is something that you will use through all your career when you still stick
 There are a lot of algorithms that must accquired to remember to program lots faster (no employers like slow programmers).
 
 
-## Skills
+## Soft Skills
+
+Most of skills need for a dev is belong to soft skills. 
