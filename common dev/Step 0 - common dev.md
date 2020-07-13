@@ -23,8 +23,14 @@ But some logic must be accquired. For example, machine will understand code from
 
 This is something that you will use through all your career when you still stick with the programming. Unless you transfer into some others area in IT industry or become a must higher position in your career.
 There are a lot of algorithms that must accquired to remember to program lots faster (no employers like slow programmers).
+Technology or Programming Language will be changed in the future, but algorithms only will be better. If you are a beginner, I suggest that you should focus on algorithms to solve the problems not on Programming Language.
+Eventually you will use many different programming languages. Or when you become to senior you wont have to code that must, but to solve programming problems.
 
 
 ## Soft Skills
 
-Most of skills need for a dev is belong to soft skills. 
+You may think that a dev won't need much soft skills beside Team work or Self-taught. Even some developers may think about Office skills like Excel or power point. But for the future career you must know or keep practice a lot more skills than you think. There some skills you may consider to practice from now on.
+
+- **Writing skill** : This skill will help you write documents, emails or even write blogs, technical articles. No matter the odds, you will kind of end up use this skill to express your ideas to others.
+- **Marketing**: You would think that I am wrong, but this skill will have it role in the future. Just ask you a question: How can you marketing yourself to others ?
+- **Speaking** : I know that most of developer wont be able to use this skill for most of the working time. This skill in fact just help you communicate with others, and n the future you must upgrade this skill to "**Public speaking**" skill. If you want to be working as a higher posisition. 
