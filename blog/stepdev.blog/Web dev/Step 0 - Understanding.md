@@ -1,3 +1,0 @@
-# What exactly the website development is?
-Most of software has been made of all the time would be the website. From past to present, website still have a important position for software development. So does the technology has developed for website development.
-Website in the present has developed to new era with a lot of different type and usages for many activities in reallife. For example: ecommerces, education, ...
