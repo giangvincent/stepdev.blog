@@ -45,3 +45,11 @@ You may think that a dev won't need much soft skills beside Team work or Self-ta
 - **Writing skill** : This skill will help you write documents, emails or even write blogs, technical articles. No matter the odds, you will kind of end up use this skill to express your ideas to others.
 - **Marketing**: You would think that I am wrong, but this skill will have it role in the future. Just ask you a question: How can you marketing yourself to others ?
 - **Speaking** : I know that most of developer wont be able to use this skill for most of the working time. This skill in fact just help you communicate with others, and n the future you must upgrade this skill to "**Public speaking**" skill. If you want to be working as a higher posisition.
+
+Thanks for read. Have peace.
+You can follow me on :
+
+- [@step_dev](https://twitter.com/step_dev).
+- [fb.com/giangvincent.org](https://www.facebook.com/giangvincent.org/).
+- [Github.com/giangvincent](https://github.com/giangvincent).
+- [linkedin/giang](https://www.linkedin.com/in/giang-do-linh-88b034131/).
