@@ -3,10 +3,8 @@ title: How to Get Better At Coding
 path: /how-to-get-better-at-coding
 date: 2019-04-05
 summary: Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic rerum earum quos explicabo suscipit maxime iste qui nihil. Reiciendis asperiores minus necessitatibus
-tags: ['coding', 'frontend', 'backend']
+tags: ["coding", "frontend", "backend"]
 ---
-
-![background](./images/blog_bg_2.jpg)
 
 Lorem ipsum dolor sit amet, [consectetur adipisicing](https://google.ca) elit. Praesentium inventore hic possimus, cum nesciunt ea debitis, tempora officia perferendis vero ratione nam laudantium aliquid voluptatem velit? Open `/src/layouts.vue` and then edit the `main.css` file.
 
@@ -66,10 +64,15 @@ export default {
 Here is how some typography styles are rendered:
 
 # h1 Heading
+
 ## h2 Heading
+
 ### h3 Heading
+
 #### h4 Heading
+
 ##### h5 Heading
+
 ###### h6 Heading
 
 The quick brown fox jumps over the lazy dog

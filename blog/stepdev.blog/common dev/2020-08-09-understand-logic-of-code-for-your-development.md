@@ -3,9 +3,7 @@ title: Understand the logic of code for your developement
 path: /understand-the-logic-of-code-for-your-development
 date: 2020-08-09
 summary: A software contain many programs, assets like images, audios, videos or something that even more complicate like 3D models. A program contain many lines of code, this codes are divided or constructed by rules. That rules are important. Because if there is no rule, computer will not understand what need to run.
-categories:
-  - Common dev
-  - Step 1
+categories: ["Common dev"]
 tags: ["logic", "development"]
 ---
 

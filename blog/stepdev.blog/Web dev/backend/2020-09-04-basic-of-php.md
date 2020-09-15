@@ -3,9 +3,7 @@ title: Basic of PHP
 path: /basic-of-php
 date: 2020-08-05
 summary: PHP is a server side scripting language. That is used to develop Static websites or Dynamic websites or web application. PHP stands for Hypertext Pre-processor, that earlier stood for Personal Home pages.
-categories:
-  - Backend Developer
-  - PHP
+categories: ["Backend Developer", "PHP"]
 tags: ["php", "backend", "basic", "intro", "step 0"]
 ---
 

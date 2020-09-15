@@ -3,8 +3,7 @@ title: Snowflake my personal project
 path: /snowflake-my-personal-project
 date: 2020-09-06
 summary: This is a blog that I write down some snowflaking ideas about my personal project, which is Thasgood.net or ohitsgood.net social network application.
-categories:
-  - Common dev
+categories: ["Common dev"]
 tags: ["snowflake", "personal"]
 ---
 
