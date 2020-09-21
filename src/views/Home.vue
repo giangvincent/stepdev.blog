@@ -1,16 +1,7 @@
 <template>
   <div>
     <!--Header-->
-    <div
-      class="w-full m-0 p-0 bg-cover bg-bottom"
-      style="background-image:url('cover.jpg'); height: 60vh; max-height:460px;"
-    >
-      <div class="container max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal">
-        <!--Title-->
-        <p class="text-white font-extrabold text-3xl md:text-5xl">👻 Ghostwind CSS</p>
-        <p class="text-xl md:text-2xl text-gray-500">Welcome to my Blog</p>
-      </div>
-    </div>
+    <nav-header></nav-header>
     <!--Container-->
     <div class="container px-4 md:px-0 max-w-6xl mx-auto -mt-32">
       <div class="mx-0 sm:mx-6">
@@ -59,6 +50,7 @@
 </template>
 
 <script>
+import NavHeader from "@/components/Header.vue";
 import MenuNavigation from "@/components/PostNav.vue";
 import GridList from "@/components/GridList3.vue";
 import Subscribe from "@/components/Subcribe.vue";
@@ -70,6 +62,7 @@ import { Carousel, Slide } from "vue-carousel";
 export default {
   name: "home",
   components: {
+    NavHeader,
     MenuNavigation,
     GridList,
     Subscribe,
