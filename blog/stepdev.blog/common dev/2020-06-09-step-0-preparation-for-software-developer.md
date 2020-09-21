@@ -3,9 +3,7 @@ title: Step 0 - Preparation for software developer
 path: /step-0-preparation-for-software-developer
 date: 2020-06-09
 summary: First thing first, want to be a dev, do you have 4 characteristics ?
-categories:
-  - Common dev
-  - Step 0
+categories: ["Common dev"]
 tags: ["develop", "beginToDev"]
 ---
 

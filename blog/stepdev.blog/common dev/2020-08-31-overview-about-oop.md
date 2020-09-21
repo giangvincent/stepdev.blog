@@ -1,10 +1,9 @@
 ---
 title: Overview about OOP
 path: /overview-about-oop
-date: 2020-31-08
+date: 2020-08-31
 summary: If you're familiar with other languages such as C# and Java, then you've probaly heard the term Object-Oriented Programming(OOP). This time I will write down overview about some fundamentals of OOP.
-categories:
-  - Common dev
+categories: ["Common dev"]
 tags: ["OOP", "development"]
 ---
 
@@ -18,7 +17,7 @@ For example: we need to get name and age of a employer, we will use 2 methods to
 
 Procedure-oriented:
 
-```
+```php
 function getPersonnel()
 {
     $name = 'John Meric';
@@ -29,7 +28,7 @@ function getPersonnel()
 
 Object-oriented:
 
-```
+```php
 class Personnel
 {
     private $name = 'John Meric';

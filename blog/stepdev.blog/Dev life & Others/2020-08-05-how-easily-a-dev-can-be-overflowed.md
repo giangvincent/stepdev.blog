@@ -3,12 +3,9 @@ title: How easily a dev can be overflowed
 path: /how-easily-a-dev-can-be-overflowed
 date: 2020-08-05
 summary: As a developer you will and have to learn some of them in some day really near. But that's not all. In software development, programming languages is just one of many problems you will face.
-categories:
-  - Dev life & Others
+categories: ["Dev life & Others"]
 tags: ["design", "frontend"]
 ---
-
-![background](../images/blog_bg_2.jpg)
 
 I am writing this blog in the august of the year 2020. This year the PHP language has became 25 years old and still be one of the popular programming language for website development.
 But trust me PHP is not the oldest language you will be learnt in someday. Nowaday there's tons of different languages, not even mention to codes, packages, programs can be reused or implemented.

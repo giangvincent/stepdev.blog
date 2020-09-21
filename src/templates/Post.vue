@@ -5,13 +5,28 @@
       <div class="text-xl text-gray-600 mb-4">{{ $page.post.date }}</div>
       <div class="flex mb-8 text-sm">
         <g-link
+          :to="category.path"
+          v-for="category in $page.post.categories"
+          :key="category.id"
+          class="bg-gray-300 rounded-full px-4 py-2 mr-4 hover:bg-green-300"
+        >
+          {{ category.title }}
+        </g-link>
+      </div>
+      <div class="flex mb-8 text-sm">
+        <g-link
           :to="tag.path"
           v-for="tag in $page.post.tags"
           :key="tag.id"
-          class="bg-gray-300 rounded-full px-4 py-2 mr-4 hover:bg-green-300">
+          class="bg-gray-300 rounded-full px-4 py-2 mr-4 hover:bg-green-300"
+        >
           {{ tag.title }}
         </g-link>
       </div>
+      <div class="flex mb-8 text-2xl font-bold italic">
+        {{ $page.post.summary }}
+      </div>
+      <div class="border-t-2 border-gray-500 mb-6"></div>
       <div class="markdown-body mb-8" v-html="$page.post.content" />
       <div class="mb-8">
         <g-link to="/blog" class="font-bold uppercase">Back to Blog</g-link>
@@ -25,8 +40,13 @@ query Post ($path: String!) {
   post: post (path: $path) {
     title
     date (format: "MMMM D, Y")
+    summary
     content
     tags {
+      title
+      path
+    }
+    categories {
       title
       path
     }
@@ -38,11 +58,14 @@ query Post ($path: String!) {
 export default {
   metaInfo() {
     return {
-      title: this.$page.post.title
-    }
-  }
-}
+      title: this.$page.post.title,
+      meta: [
+        { name: "description", content: this.$page.post.summary },
+        { name: "author", content: "Giang Vincent" },
+      ],
+    };
+  },
+};
 </script>
 
 <style src="../css/github-markdown.css" />
-

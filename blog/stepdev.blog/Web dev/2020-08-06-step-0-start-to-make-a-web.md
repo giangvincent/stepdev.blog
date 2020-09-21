@@ -3,13 +3,9 @@ title: Start to make a website
 path: /start-to-make-a-website
 date: 2020-08-06
 summary: Shit is go to real!
-categories:
-  - Web dev
-  - Step 0
+categories: ["Web dev"]
 tags: ["website", "develop", "beginToDev"]
 ---
-
-![background](./images/blog_bg_2.jpg)
 
 Okay, after hear the requirements, after all argument and discuss, now is time for real shit.
 
