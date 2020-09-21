@@ -14,6 +14,21 @@ export default new Router({
       component: Home
     },
     {
+      path: '/p/:slug',
+      name: 'post',
+      component: () => import('./views/Post.vue')
+    },
+    {
+      path: '/cat/:slug',
+      name: 'category',
+      component: () => import('./views/Category.vue')
+    },
+    {
+      path: '/tag/:slug',
+      name: 'tag',
+      component: () => import('./views/Tag.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
