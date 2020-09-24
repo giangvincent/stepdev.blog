@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -91,6 +92,7 @@ class PostController extends AdminController
         $form->textarea('summary', __('Summary'));
         $form->cropper('feature_image', __('Feature image'));
         $form->simditor('content', __('Content'));
+        $form->multipleSelect('tags', 'Tags')->options(Tag::all()->pluck('name', 'id'));
         $form->textarea('navs', __('Navs'));
         $form->switch('status', __('Status'));
         $form->text('seo_title', __('Seo title'));
