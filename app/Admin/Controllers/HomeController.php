@@ -31,4 +31,23 @@ class HomeController extends Controller
                 });
             });
     }
+
+    public function uploadImage(Request $request)
+    {
+        $data = [
+            'success' => false,
+            'msg' => 'Upload failed!',
+            'file_path' => '',
+        ];
+
+        if ($file = $request->upload_file) {
+
+            if ($result) {
+                $data['file_path'] = $result['path'];
+                $data['msg'] = "Upload successfully!";
+                $data['success'] = true;
+            }
+        }
+        return $data;
+    }
 }

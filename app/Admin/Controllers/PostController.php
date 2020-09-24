@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -85,19 +86,17 @@ class PostController extends AdminController
     {
         $form = new Form(new Post());
 
-        $form->number('cat_id', __('Cat id'));
+        $form->select('cat_id', 'Category')->options(Category::all()->pluck('name', 'id'));
         $form->text('title', __('Title'));
-        $form->text('slug', __('Slug'));
         $form->textarea('summary', __('Summary'));
-        $form->text('feature_image', __('Feature image'));
-        $form->textarea('content', __('Content'));
-        $form->textarea('images', __('Images'));
+        $form->cropper('feature_image', __('Feature image'));
+        $form->simditor('content', __('Content'));
         $form->textarea('navs', __('Navs'));
         $form->switch('status', __('Status'));
         $form->text('seo_title', __('Seo title'));
-        $form->text('seo_desc', __('Seo desc'));
-        $form->text('seo_keys', __('Seo keys'));
-        $form->number('author_id', __('Author id'));
+        $form->textarea('seo_desc', __('Seo desc'));
+        $form->textarea('seo_keys', __('Seo keys'));
+        $form->hidden('author_id')->default(\Admin::user()->id);
 
         return $form;
     }

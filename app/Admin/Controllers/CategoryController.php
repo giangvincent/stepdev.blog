@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Str;
 
 class CategoryController extends AdminController
 {
@@ -30,9 +31,16 @@ class CategoryController extends AdminController
         $grid->column('name', __('Name'));
         $grid->column('slug', __('Slug'));
         $grid->column('description', __('Description'));
-        $grid->column('image', __('Image'));
-        $grid->column('parent', __('Parent'));
-        $grid->column('status', __('Status'));
+        $grid->column('image', __('Image'))->image();
+        $grid->column('parent', __('Parent'))->display(function ($parent) {
+            if ($parent !== 0) {
+                return Category::findOrFail($parent)->name;
+            } else {
+                return "";
+            }
+
+        });
+        $grid->column('status', __('Status'))->switch();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -72,12 +80,18 @@ class CategoryController extends AdminController
         $form = new Form(new Category());
 
         $form->text('name', __('Name'));
-        $form->text('slug', __('Slug'));
-        $form->textarea('description', __('Description'));
-        $form->image('image', __('Image'));
-        $form->number('parent', __('Parent'));
+        $form->hidden('slug', __('Slug'));
+        $form->textarea('description', __('Description'))->default("");
+        $form->cropper('image', __('Image'));
+        $form->select('parent', __('Parent'))->options(function ($par_id) {
+            $categories = Category::where('status', 1)->get()->pluck('name', 'id');
+            return $categories;
+        });
         $form->switch('status', __('Status'));
-
+        // callback before save
+        $form->saving(function (Form $form) {
+            $form->slug = Str::slug($form->name, "-");
+        });
         return $form;
     }
 }
