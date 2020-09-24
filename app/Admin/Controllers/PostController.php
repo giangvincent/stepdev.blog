@@ -100,7 +100,18 @@ class PostController extends AdminController
         $form->hidden('author_id')->default(\Admin::user()->id);
 
         $form->saving(function (Form $form) {
-            $form->slug = Str::slug($form->name, "-");
+            $form->slug = Str::slug($form->title, "-");
+        });
+        $form->saved(function (Form $form) {
+            $post = Post::find($form->model()->id);
+
+            $ext = pathinfo(public_path() . '/upload/' . $post->feature_image, PATHINFO_EXTENSION);
+            $newFeatureImage = 'images/' . $post->slug . '.' . $ext;
+            // dd($newFeatureImage);
+            rename(public_path() . '/upload/' . $post->feature_image, public_path() . '/upload/' . $newFeatureImage);
+
+            $post->feature_image = $newFeatureImage;
+            $post->save();
         });
         return $form;
     }

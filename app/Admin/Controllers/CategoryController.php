@@ -38,7 +38,6 @@ class CategoryController extends AdminController
             } else {
                 return "";
             }
-
         });
         $grid->column('status', __('Status'))->switch();
         $grid->column('created_at', __('Created at'));
