@@ -9,6 +9,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Str;
 
 class PostController extends AdminController
 {
@@ -29,21 +30,18 @@ class PostController extends AdminController
         $grid = new Grid(new Post());
 
         $grid->column('id', __('Id'));
-        $grid->column('cat_id', __('Cat id'));
+        $grid->column('cat_id', __('Category'))->display(function ($cat_id) {
+            if ($cat_id !== 0) {
+                return Category::findOrFail($cat_id)->name;
+            } else {
+                return "";
+            }
+        });
         $grid->column('title', __('Title'));
-        $grid->column('slug', __('Slug'));
         $grid->column('summary', __('Summary'));
-        $grid->column('feature_image', __('Feature image'));
-        $grid->column('content', __('Content'));
-        $grid->column('images', __('Images'));
-        $grid->column('navs', __('Navs'));
-        $grid->column('status', __('Status'));
-        $grid->column('seo_title', __('Seo title'));
-        $grid->column('seo_desc', __('Seo desc'));
-        $grid->column('seo_keys', __('Seo keys'));
+        $grid->column('feature_image', __('Feature image'))->image();
+        $grid->column('status', __('Status'))->switch();
         $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
-        $grid->column('author_id', __('Author id'));
 
         return $grid;
     }
@@ -89,6 +87,7 @@ class PostController extends AdminController
 
         $form->select('cat_id', 'Category')->options(Category::all()->pluck('name', 'id'));
         $form->text('title', __('Title'));
+        $form->hidden('slug', __('Slug'));
         $form->textarea('summary', __('Summary'));
         $form->cropper('feature_image', __('Feature image'));
         $form->simditor('content', __('Content'));
@@ -100,6 +99,9 @@ class PostController extends AdminController
         $form->textarea('seo_keys', __('Seo keys'));
         $form->hidden('author_id')->default(\Admin::user()->id);
 
+        $form->saving(function (Form $form) {
+            $form->slug = Str::slug($form->name, "-");
+        });
         return $form;
     }
 }

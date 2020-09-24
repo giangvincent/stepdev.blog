@@ -417,9 +417,10 @@ return [
             ],
         ],
         'cropper' => [
-
-            // 如果要关掉这个扩展，设置为false
             'enable' => true,
+        ],
+        'media-manager' => [
+            'disk' => 'public', // Points to the disk set in config/filesystem.php
         ],
     ],
 ];

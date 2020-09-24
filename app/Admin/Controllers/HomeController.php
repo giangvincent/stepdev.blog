@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\Dashboard;
 use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -41,9 +42,11 @@ class HomeController extends Controller
         ];
 
         if ($file = $request->upload_file) {
-
+            $image_url = 'content/';
+            $image_name = uniqid(rand()) . '.' . $file->getClientOriginalExtension();
+            $result = $file->storeAs($image_url, $image_name, 'public');
             if ($result) {
-                $data['file_path'] = $result['path'];
+                $data['file_path'] = env('STATIC_URL') . '/upload/' . $image_url . '/' . $image_name;
                 $data['msg'] = "Upload successfully!";
                 $data['success'] = true;
             }

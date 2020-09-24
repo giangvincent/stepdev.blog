@@ -13,8 +13,10 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.5",
         "jxlwqq/simditor": "^1.0",
         "laravel-admin-ext/cropper": "^1.0",
+        "laravel-admin-ext/media-manager": "^1.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0"
     },
