@@ -76,7 +76,21 @@ class TagController extends AdminController
         $form->saving(function (Form $form) {
             $form->slug = Str::slug($form->name, "-");
         });
+        $form->saved(function (Form $form) {
+            $tag = Tag::find($form->model()->id);
+            $this->exportToJson($tag);
+        });
 
         return $form;
+    }
+
+    public function exportToJson($tag)
+    {
+        $data = $tag->toArray();
+        $data['posts'] = $tag->posts()->where('status', 1)->select('id', 'title', 'slug', 'summary', 'feature_image', 'updated_at')->orderBy('id', 'desc')->limit(12)->get()->toArray();
+        if (!file_exists(public_path() . '/content/categories/')) {
+            mkdir(public_path() . '/content/categories/', 0777);
+        }
+        file_put_contents(public_path() . '/content/categories/' . $category->id . '.json', json_encode($data));
     }
 }

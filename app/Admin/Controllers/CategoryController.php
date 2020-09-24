@@ -33,7 +33,7 @@ class CategoryController extends AdminController
         $grid->column('description', __('Description'));
         $grid->column('image', __('Image'))->image();
         $grid->column('parent', __('Parent'))->display(function ($parent) {
-            if ($parent !== 0) {
+            if ($parent !== 0 && $parent !== null) {
                 return Category::findOrFail($parent)->name;
             } else {
                 return "";
@@ -91,6 +91,30 @@ class CategoryController extends AdminController
         $form->saving(function (Form $form) {
             $form->slug = Str::slug($form->name, "-");
         });
+
+        $form->saved(function (Form $form) {
+            $category = Category::find($form->model()->id);
+            $this->exportToJson($category);
+        });
         return $form;
+    }
+
+    public function exportToJson($category)
+    {
+        $data = $category->toArray();
+        $data['posts'] = $category->posts()->where('status', 1)->select('id', 'title', 'slug', 'summary', 'feature_image', 'updated_at')->orderBy('id', 'desc')->limit(12)->get()->toArray();
+        if (!file_exists(public_path() . '/content/categories/')) {
+            mkdir(public_path() . '/content/categories/', 0777);
+        }
+        file_put_contents(public_path() . '/content/categories/' . $category->id . '.json', json_encode($data));
+
+        $allCats = Category::where('status', 1)->get();
+        $allCatsData = [];
+        foreach ($allCats as $cat) {
+            $catData = $cat->toArray();
+            $catData['posts'] = $cat->posts()->count();
+            array_push($allCatsData, $catData);
+        }
+        file_put_contents(public_path() . '/content/categories.json', json_encode($allCatsData));
     }
 }

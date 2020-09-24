@@ -104,15 +104,28 @@ class PostController extends AdminController
         });
         $form->saved(function (Form $form) {
             $post = Post::find($form->model()->id);
+            if ($post->feature_image !== null) {
+                $ext = pathinfo(public_path() . '/upload/' . $post->feature_image, PATHINFO_EXTENSION);
+                $newFeatureImage = 'images/' . $post->slug . '.' . $ext;
+                // dd($newFeatureImage);
+                rename(public_path() . '/upload/' . $post->feature_image, public_path() . '/upload/' . $newFeatureImage);
 
-            $ext = pathinfo(public_path() . '/upload/' . $post->feature_image, PATHINFO_EXTENSION);
-            $newFeatureImage = 'images/' . $post->slug . '.' . $ext;
-            // dd($newFeatureImage);
-            rename(public_path() . '/upload/' . $post->feature_image, public_path() . '/upload/' . $newFeatureImage);
+                $post->feature_image = $newFeatureImage;
+                $post->save();
+            }
 
-            $post->feature_image = $newFeatureImage;
-            $post->save();
+            $this->exportToJson($post);
         });
         return $form;
+    }
+
+    public function exportToJson($post)
+    {
+        $data = $post->toArray();
+        $data['tags'] = $post->tags()->get()->toArray();
+        if (!file_exists(public_path() . '/content/posts/')) {
+            mkdir(public_path() . '/content/posts/', 0777);
+        }
+        file_put_contents(public_path() . '/content/posts/' . $post->id . '.json', json_encode($data));
     }
 }
