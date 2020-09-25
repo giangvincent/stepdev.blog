@@ -21,7 +21,7 @@ import CardItem from "@/components/CardItem.vue";
 export default {
   name: "slide-3post",
   components: {
-    CardItem,
-  },
+    CardItem
+  }
 };
 </script>

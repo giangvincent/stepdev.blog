@@ -8,7 +8,9 @@
         <!--Nav-->
         <menu-navigation></menu-navigation>
 
-        <div class="bg-gray-200 w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t">
+        <div
+          class="bg-gray-200 w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t"
+        >
           <!--Lead Card-->
           <carousel
             :per-page="1"
@@ -17,13 +19,13 @@
             :navigationNextLabel="navigationNextLabel"
             :navigationPrevLabel="navigationPrevLabel"
           >
-            <slide>
+            <slide class="shadow-lg">
               <card-item></card-item>
             </slide>
-            <slide>
+            <slide class="shadow-lg">
               <card-item></card-item>
             </slide>
-            <slide>
+            <slide class="shadow-lg">
               <card-item></card-item>
             </slide>
           </carousel>
@@ -70,7 +72,7 @@ export default {
     FooterPart,
     CardItem,
     Carousel,
-    Slide,
+    Slide
   },
   data() {
     return {
@@ -79,11 +81,11 @@ export default {
 </svg></div>`,
       navigationPrevLabel: `<div class="w-24 h-24 -mt-20 -mr-16 sm:-mr-12"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-</svg></div>`,
+</svg></div>`
     };
   },
   mounted() {},
-  methods: {},
+  methods: {}
 };
 </script>
 
