@@ -28,21 +28,47 @@ class PostController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Post());
-
-        $grid->column('id', __('Id'));
+        $grid->model()->orderBy('id', 'desc');
+        $grid->column('id', __('Id'))->sortable();
         $grid->column('cat_id', __('Category'))->display(function ($cat_id) {
             if ($cat_id !== 0) {
                 return Category::findOrFail($cat_id)->name;
             } else {
                 return "";
             }
-        });
-        $grid->column('title', __('Title'));
-        $grid->column('summary', __('Summary'));
+        })->sortable();
+        $grid->column('title', __('Title'))->filter('like');
+        $grid->column('summary', __('Summary'))->filter('like');
         $grid->column('feature_image', __('Feature image'))->image();
-        $grid->column('status', __('Status'))->switch();
-        $grid->column('created_at', __('Created at'));
+        $states = [
+            'on' => ['value' => 1, 'text' => 'Publish', 'color' => 'primary'],
+            'off' => ['value' => 2, 'text' => 'Pending', 'color' => 'default'],
+        ];
+        $grid->column('status', __('Status'))->switch($states)->filter([
+            0 => 'Pending',
+            1 => 'Publish',
+        ]);
+        $grid->column('created_at', __('Created at'))->display(function ($created_at) {
+            return date("Y-m-d H:i:s", strtotime($created_at));
+        });
+        $grid->column('updated_at', __('Updated at'))->display(function ($created_at) {
+            return date("Y-m-d H:i:s", strtotime($created_at));
+        });
 
+        $grid->quickSearch('title', 'summary', 'content');
+        $grid->filter(function ($filter) {
+
+            // $filter->date('updated_at', 'Lọc theo ngày tháng');
+            $filter->between('updated_at', 'Lọc theo ngày tháng')->datetime();
+
+            $cats = Category::get()->pluck('name', 'id')->toArray();
+            $filter->where(function ($query) {
+                $query->whereHas('category', function ($query) {
+                    $query->where('id', $this->input);
+                });
+
+            }, 'Category')->select($cats);
+        });
         return $grid;
     }
 
@@ -123,6 +149,9 @@ class PostController extends AdminController
     {
         $data = $post->toArray();
         $data['tags'] = $post->tags()->get()->toArray();
+        if (!file_exists(public_path() . '/content/')) {
+            mkdir(public_path() . '/content/', 0777);
+        }
         if (!file_exists(public_path() . '/content/posts/')) {
             mkdir(public_path() . '/content/posts/', 0777);
         }

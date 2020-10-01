@@ -46,6 +46,12 @@ class HomeController extends Controller
             $image_name = uniqid(rand()) . '.' . $file->getClientOriginalExtension();
             $result = $file->storeAs($image_url, $image_name, 'public');
             if ($result) {
+                if (!file_exists(public_path() . '/upload/')) {
+                    mkdir(public_path() . '/upload/', 0777);
+                }
+                if (!file_exists(public_path() . '/upload/' . $image_url)) {
+                    mkdir(public_path() . '/upload/' . $image_url, 0777);
+                }
                 $data['file_path'] = env('STATIC_URL') . '/upload/' . $image_url . '/' . $image_name;
                 $data['msg'] = "Upload successfully!";
                 $data['success'] = true;

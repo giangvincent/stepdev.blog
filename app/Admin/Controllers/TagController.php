@@ -26,14 +26,31 @@ class TagController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Tag());
+        $grid->model()->orderBy('id', 'desc');
+        $grid->column('id', __('Id'))->sortable();
+        $grid->column('name', __('Name'))->filter('like');
+        $grid->column('desc', __('Desc'))->filter('like');
+        $states = [
+            'on' => ['value' => 1, 'text' => 'Publish', 'color' => 'primary'],
+            'off' => ['value' => 2, 'text' => 'Pending', 'color' => 'default'],
+        ];
+        $grid->column('status', __('Status'))->switch($states)->filter([
+            0 => 'Pending',
+            1 => 'Publish',
+        ]);
+        $grid->column('created_at', __('Created at'))->display(function ($created_at) {
+            return date("Y-m-d H:i:s", strtotime($created_at));
+        });
+        $grid->column('updated_at', __('Updated at'))->display(function ($created_at) {
+            return date("Y-m-d H:i:s", strtotime($created_at));
+        });
+        $grid->quickSearch('name', 'description');
 
-        $grid->column('id', __('Id'));
-        $grid->column('name', __('Name'));
-        $grid->column('slug', __('Slug'));
-        $grid->column('desc', __('Desc'));
-        $grid->column('status', __('Status'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->filter(function ($filter) {
+
+            // $filter->date('updated_at', 'Lọc theo ngày tháng');
+            $filter->between('updated_at', 'Lọc theo ngày tháng')->datetime();
+        });
 
         return $grid;
     }
@@ -88,6 +105,9 @@ class TagController extends AdminController
     {
         $data = $tag->toArray();
         $data['posts'] = $tag->posts()->where('status', 1)->select('id', 'title', 'slug', 'summary', 'feature_image', 'updated_at')->orderBy('id', 'desc')->limit(12)->get()->toArray();
+        if (!file_exists(public_path() . '/content/')) {
+            mkdir(public_path() . '/content/', 0777);
+        }
         if (!file_exists(public_path() . '/content/categories/')) {
             mkdir(public_path() . '/content/categories/', 0777);
         }
