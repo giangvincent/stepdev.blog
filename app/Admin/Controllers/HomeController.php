@@ -8,6 +8,7 @@ use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -58,5 +59,18 @@ class HomeController extends Controller
             }
         }
         return $data;
+    }
+
+    public function uploadForWangEditor(Request $request)
+    {
+        $url = '';
+
+        $image_url = 'content/';
+        $image_name = uniqid(rand()) . '.' . $request->file()->getClientOriginalExtension();
+        $url = Storage::disk('public')->url($request->file()->storeAs($image_url, $image_name, 'public'));
+
+        return json_encode([
+            "location" => $url,
+        ]);
     }
 }

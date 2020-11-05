@@ -116,7 +116,7 @@ class PostController extends AdminController
         $form->hidden('slug', __('Slug'));
         $form->textarea('summary', __('Summary'));
         $form->cropper('feature_image', __('Feature image'));
-        $form->simditor('content', __('Content'));
+        $form->summernote('content', __('Content'));
         $form->multipleSelect('tags', 'Tags')->options(Tag::all()->pluck('name', 'id'));
         $form->textarea('navs', __('Navs'));
         $form->switch('status', __('Status'));

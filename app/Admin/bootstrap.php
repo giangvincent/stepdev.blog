@@ -18,4 +18,11 @@
  *
  */
 
+// use App\Admin\Extensions\CKeditor;
+use App\Admin\Extensions\quill;
+use Encore\Admin\Form;
+
 Encore\Admin\Form::forget(['map', 'editor']);
+
+// Form::extend('ckeditor', CKeditor::class);
+Form::extend('quill', quill::class);

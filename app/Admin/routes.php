@@ -16,4 +16,6 @@ Route::group([
     $router->resource('tags', TagController::class);
 
     $router->post('/api/upload', 'HomeController@uploadImage');
+    $router->post('/api/upload-wang-editor', 'HomeController@uploadForWangEditor');
+
 });
